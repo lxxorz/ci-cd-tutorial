@@ -7,11 +7,6 @@ on:
     branches: [ $default-branch ]
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: pnpm/action-setup@v4
-
   build:
     runs-on: ubuntu-latest
 
@@ -24,7 +19,14 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: pnpm lint
-    - run: pnpm run build --if-present
-    - run: pnpm build
+        cache: 'pnpm'
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: latest
+    - name: Install dependencies
+      run: pnpm install
+    - name: Lint
+      run: pnpm lint
+    - name: Build
+      run: pnpm build
