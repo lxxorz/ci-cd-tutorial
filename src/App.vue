@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+import Counter from './components/Counter.vue'
 </script>
 
 <template>
@@ -12,6 +13,9 @@ import HelloWorld from './components/HelloWorld.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <div class="counter-container">
+    <Counter :initialValue="10" :step="2" />
+  </div>
 </template>
 
 <style scoped>
@@ -26,5 +30,11 @@ import HelloWorld from './components/HelloWorld.vue'
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+
+.counter-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 1px solid #eee;
 }
 </style>
