@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Counter from '../Counter.vue'
+import Counter from '../CounterComp.vue'
 
 describe('Counter 组件', () => {
   it('正确渲染初始值', () => {
@@ -9,7 +9,7 @@ describe('Counter 组件', () => {
         initialValue: 5
       }
     })
-    
+
     expect(wrapper.find('.counter-display').text()).toBe('5')
     expect(wrapper.find('h2').text()).toBe('计数器组件')
   })
@@ -21,10 +21,10 @@ describe('Counter 组件', () => {
         step: 2
       }
     })
-    
+
     await wrapper.find('.increment').trigger('click')
     expect(wrapper.find('.counter-display').text()).toBe('2')
-    
+
     await wrapper.find('.increment').trigger('click')
     expect(wrapper.find('.counter-display').text()).toBe('4')
   })
@@ -36,10 +36,10 @@ describe('Counter 组件', () => {
         step: 3
       }
     })
-    
+
     await wrapper.find('.decrement').trigger('click')
     expect(wrapper.find('.counter-display').text()).toBe('7')
-    
+
     await wrapper.find('.decrement').trigger('click')
     expect(wrapper.find('.counter-display').text()).toBe('4')
   })
@@ -50,11 +50,11 @@ describe('Counter 组件', () => {
         initialValue: 5
       }
     })
-    
+
     await wrapper.find('.increment').trigger('click')
     await wrapper.find('.increment').trigger('click')
     expect(wrapper.find('.counter-display').text()).toBe('7')
-    
+
     await wrapper.find('.reset').trigger('click')
     expect(wrapper.find('.counter-display').text()).toBe('5')
   })
@@ -62,7 +62,7 @@ describe('Counter 组件', () => {
   it('使用默认值正确渲染', async () => {
     const wrapper = mount(Counter)
     expect(wrapper.find('.counter-display').text()).toBe('0')
-    
+
     // 测试默认步长为1
     await wrapper.find('.increment').trigger('click')
     expect(wrapper.find('.counter-display').text()).toBe('1')

@@ -1,27 +1,23 @@
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 
-interface CounterProps {
-  initialValue?: number
-  step?: number
-}
-
-const props = withDefaults(defineProps<CounterProps>(), {
-  initialValue: 0,
-  step: 1
+// 使用运行时声明
+const props = defineProps({
+  initialValue: { type: Number, default: 0 },
+  step: { type: Number, default: 1 }
 })
 
 const count = ref(props.initialValue)
 
-const increment = (): void => {
+function increment() {
   count.value += props.step
 }
 
-const decrement = (): void => {
+function decrement() {
   count.value -= props.step
 }
 
-const reset = (): void => {
+function reset() {
   count.value = props.initialValue
 }
 </script>
@@ -29,11 +25,28 @@ const reset = (): void => {
 <template>
   <div class="counter">
     <h2>计数器组件</h2>
-    <div class="counter-display">{{ count }}</div>
+    <div class="counter-display">
+      {{ count }}
+    </div>
     <div class="counter-controls">
-      <button @click="decrement" class="counter-button decrement">-</button>
-      <button @click="reset" class="counter-button reset">重置</button>
-      <button @click="increment" class="counter-button increment">+</button>
+      <button
+        class="counter-button decrement"
+        @click="decrement"
+      >
+        -
+      </button>
+      <button
+        class="counter-button reset"
+        @click="reset"
+      >
+        重置
+      </button>
+      <button
+        class="counter-button increment"
+        @click="increment"
+      >
+        +
+      </button>
     </div>
   </div>
 </template>
